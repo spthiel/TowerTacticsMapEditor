@@ -1,0 +1,30 @@
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tower Tactics: Liberation</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="assets/index.min.css" type="text/css" rel="stylesheet">
+
+    </head>
+    <body class="text-center">
+        <div class="background">
+            <div id="stars"></div>
+            <div id="planets"></div>
+            <div id="dust"></div>
+        </div>
+        <main class="flex flex-col items-center" data-controller="map">
+            <img src="assets/images/logo1.png" alt="logo">
+            <h1>Map Editor</h1>
+            <div class="controls flex flex-row gap-x-1 m-2" data-map-target="controls">
+                <div class="border-2 border-black border-solid p-1 rounded" data-action="mousedown->map#clear:prevent">
+                    <img src="assets/images/trash-solid.svg" width="32" height="32" alt="clear field">
+                </div>
+            </div>
+            <div class="map">
+                <canvas id="canvas" data-map-target="mapCanvas" data-action="mousedown->map#startClick:prevent mousemove->map#moveMouse:prevent mouseup@document->map#endClick"></canvas>
+            </div>
+        </main>
+        <script src="assets/index.min.js"></script>
+    </body>
+</html>

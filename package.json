@@ -1,0 +1,37 @@
+{
+  "name": "ttme",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npm run clean && npm-run-all -pl build:js build:css build:fonts",
+    "build:js": "esbuild src/js/index.ts --bundle --outfile=build/out/index.min.js --minify --target=es6",
+    "build:js-dev": "esbuild src/js/index.ts --bundle --outfile=build/out/index.min.js --target=es6",
+    "build:css": "npm run build:css:compile && npm run build:css:minify",
+    "build:css:compile": "sass src/css/index.scss build/sass.css --no-source-map && npx tailwindcss -i build/sass.css -o build/tailwind.css --minify",
+    "build:css:minify": "postcss build/tailwind.css > build/out/index.min.css",
+    "build:fonts": "mkdir -p build/out && cp -r assets/* build/out/",
+    "clean": "rm -rf build",
+    "watch": "npm-run-all -pl watch:js watch:css build:fonts",
+    "watch:js": "nodemon -w ./src/js -e ts -x \"npm run build:js-dev\"",
+    "watch:css": "npm-run-all -pl watch:css:base watch:css:tailwind",
+    "watch:css:base": "sass src/css/index.scss build/sass.css --no-source-map -w",
+    "watch:css:tailwind": "npx tailwindcss -i ./build/sass.css -o ./build/out/index.min.css --watch",
+    "screen": "screen -S ttme npm run watch",
+    "screendm": "screen -dmS nkselect npm run watch && echo 'Watcher started in ddev. Use ddev exec screen -r to attach to watcher'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^5.1.14",
+    "esbuild": "^0.17.4",
+    "nodemon": "^2.0.20",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.57.1",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1"
+  }
+}
