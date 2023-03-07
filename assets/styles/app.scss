@@ -1,0 +1,44 @@
+
+.controls .selected {
+    background: #ffffff40;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: #000E27;
+}
+
+.background > * {
+    position: absolute;
+    inset: 0;
+}
+
+#stars {
+    background-image: url("/assets/images/stars1.png");
+}
+
+#planets {
+    background-image: url("/assets/images/planets1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#dust {
+    background-image: url("/assets/images/dust1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-family: 'comfortaabold', sans-serif;
+    color: white;
+    font-weight: 900;
+    font-size: 2em;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+@tailwind utilities;
